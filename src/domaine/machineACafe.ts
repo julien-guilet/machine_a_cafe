@@ -32,12 +32,12 @@ export class MachineACafe {
     }
 
     public servirCafe() {
-        if (this.peutServir) {
+        if (this.peutServir && this.piece >= this.prixCafe) {
             this.piece == this.prixCafe;
             return true;
         }
         else {
-            this.argentRendu = this.argentEncaisse;
+            this.argentRendu = this.piece;
             this.argentEncaisse = 0;
             return false;
         }
