@@ -40,25 +40,25 @@ describe("test works", () => {
 
             // Assert
             expect(resultat).toBe(false);
-            expect(machineACafe.getArgentRendu()).toBe(piece);
+            expect(machineACafe.getArgentEncaisse()).toBe(0);
         });
 
-        test("ETANT DONNE une machine a café ne pouvant pas servir " +
+    test("ETANT DONNE une machine a café ne pouvant pas servir " +
         "QUAND on insère au moins le prix d'un café " +
-        "ALORS aucun café n'est servi "+
-        "ET l'argent est rendu ", () =>{
+        "ALORS aucun café n'est servi " +
+        "ET l'argent est rendu ", () => {
 
-       // Arrange
-       const machineACafe = new MachineACafe(prixCafe);
-       machineACafe.setPeutServir(false);
-       const piece = machineACafe.getPrixCafe();
+            // Arrange
+            const machineACafe = new MachineACafe(prixCafe);
+            machineACafe.setPeutServir(false);
+            const piece = machineACafe.getPrixCafe();
 
-       // Act
-       machineACafe.insererPiece(piece);
-       const resultat = machineACafe.servirCafe();
+            // Act
+            machineACafe.insererPiece(piece);
+            const resultat = machineACafe.servirCafe();
 
-       // Assert
-       expect(resultat).toBe(false);
-       expect(machineACafe.getArgentRendu()).toBe(machineACafe.getPrixCafe());
+            // Assert
+            expect(resultat).toBe(false);
+            expect(machineACafe.getArgentEncaisse()).toBe(0);
         });
 });

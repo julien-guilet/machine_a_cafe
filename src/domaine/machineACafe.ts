@@ -6,7 +6,6 @@ export class MachineACafe {
 
     private peutServir = true;
     private argentEncaisse = 0;
-    private argentRendu = 0;
     private prixCafe = 0.50;
     private piece = 0;
 
@@ -22,10 +21,6 @@ export class MachineACafe {
         return this.argentEncaisse;
     }
 
-    public getArgentRendu() {
-        return this.argentRendu;
-    }
-
     public insererPiece(piece: number) {
         this.piece = piece;
         this.argentEncaisse = this.argentEncaisse + this.piece;
@@ -37,8 +32,7 @@ export class MachineACafe {
             return true;
         }
         else {
-            this.argentRendu = this.piece;
-            this.argentEncaisse = 0;
+            this.argentEncaisse = this.argentEncaisse - this.piece;
             return false;
         }
     }
