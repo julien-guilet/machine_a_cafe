@@ -28,7 +28,6 @@ export class MachineACafe {
 
     public servirCafe() {
         if (this.peutServir && this.piece >= this.prixCafe) {
-            this.piece == this.prixCafe;
             return true;
         }
         else {
