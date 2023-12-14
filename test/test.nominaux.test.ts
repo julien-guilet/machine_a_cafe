@@ -61,4 +61,32 @@ describe("test works", () => {
             expect(resultat).toBe(false);
             expect(machineACafe.getArgentEncaisse()).toBe(0);
         });
+
+        test("ETANT DONNE une machine a café " +
+        "QUAND on insère au moins le prix d'un café " +
+        "ET qu'on insère une pièce inférieur au prix d'un café " +
+        "ET qu'on insère au moins le prix d'un café " +
+        "ALORS deux café est servi " +
+        "ET de l'argent est rendu ", () => {
+
+            // Arrange
+            const machineACafe = new MachineACafe(prixCafe);
+            const piece1 = pieceSuperieurOuEgaleAuPrixDuCafe[0];
+            const piece2 = pieceInférieurAuPrixDuCafe[0];
+            const piece3 = pieceSuperieurOuEgaleAuPrixDuCafe[0];
+
+            // Act
+            machineACafe.insererPiece(piece1);
+            const resultat1 = machineACafe.servirCafe();
+            machineACafe.insererPiece(piece2);
+            const resultat2 = machineACafe.servirCafe();
+            machineACafe.insererPiece(piece3);
+            const resultat3 = machineACafe.servirCafe();
+
+            // Assert
+            expect(resultat1).toBe(true);
+            expect(resultat2).toBe(false);
+            expect(resultat3).toBe(true);
+            expect(machineACafe.getArgentEncaisse()).toBe(1);
+        });
 });
