@@ -1,13 +1,18 @@
+import { MachineACafe } from "../src/domaine/machineACafe";
+
 describe("test works", () => {
-    test("ETANT DONNE une machine à café " +
-        "QUAND on insère au moins le prix d'un café " +
-        "ALROS un café est servi " +
-        "ET l'argent est encaissé", () => {
+
+    const pieceSuperieurOuEgaleAuPrixCafe: number[] = [0.50, 1, 2];
+    const prixCafe = 0.50;
+
+    test.each([...pieceSuperieurOuEgaleAuPrixCafe])("ETANT DONNE une machine à café " +
+        "QUAND on insère au moins le prix d'un café : %s€ " +
+        "ALORS un café est servi " +
+        "ET l'argent est encaissé", (pieceInséré) => {
 
             // Arrange
-            const machineACafe = new MachineACafe();
-            machineACafe.setPrixCafe(0.50);
-            const piece = 0.50;
+            const machineACafe = new MachineACafe(prixCafe);
+            const piece = pieceInséré;
 
             // Act
             machineACafe.insererPiece(piece);
@@ -15,7 +20,7 @@ describe("test works", () => {
 
             // Assert
             expect(resultat).toBe(true);
-            expect(machineACafe.getArgentEncaisse()).toBe(piece);
+            expect(machineACafe.getArgentEncaisse()).toBe(pieceInséré);
         });
 
 
