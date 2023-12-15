@@ -8,6 +8,7 @@ export class MachineACafe {
     private argentEncaisse = 0;
     private prixCafe = 0.50;
     private piece = 0;
+    private allonge = false;
 
     public setPeutServir(peutServir: boolean) {
         this.peutServir = peutServir;
@@ -32,6 +33,19 @@ export class MachineACafe {
         }
         else {
             this.argentEncaisse = this.argentEncaisse - this.piece;
+            return false;
+        }
+    }
+
+    public setAllonge(allonge: boolean) {
+        this.allonge = allonge;
+    }
+
+    public ajouterEau() {
+        if (this.allonge) {
+            return true;
+        }
+        else {
             return false;
         }
     }

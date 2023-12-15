@@ -6,6 +6,7 @@ describe("test works", () => {
     const pieceInférieurAuPrixDuCafe: number[] = [0.01, 0.02, 0.05, 0.10, 0.20];
     const prixCafe: number = 0.50;
 
+
     test.each([...pieceSuperieurOuEgaleAuPrixDuCafe])("ETANT DONNE une machine à café " +
         "QUAND on insère au moins le prix d'un café : %s€ " +
         "ALORS un café est servi " +
@@ -88,5 +89,28 @@ describe("test works", () => {
             expect(resultat2).toBe(false);
             expect(resultat3).toBe(true);
             expect(machineACafe.getArgentEncaisse()).toBe(1);
+        });
+
+
+        test("ETANT DONNE une machine a café " +
+        "QUAND on choissit un café allongé " +
+        "ET qu'on insère au moins le prix d'un café " +
+        "ALORS un café est servi " +
+        "Et une dose d'eau est ajouté " +
+        "ET l'argent est rendu ", () => {
+
+            // Arrange
+            const machineACafe = new MachineACafe(prixCafe);
+            const piece = pieceSuperieurOuEgaleAuPrixDuCafe[0];
+
+            // Act
+            machineACafe.setAllonge(true);
+            machineACafe.insererPiece(piece);
+            machineACafe.servirCafe();
+            const resultat = machineACafe.ajouterEau();
+
+            // Assert
+            expect(resultat).toBe(true);
+            expect(machineACafe.getArgentEncaisse()).toBe(piece);
         });
 });
