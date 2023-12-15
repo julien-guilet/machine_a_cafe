@@ -97,7 +97,7 @@ describe("test works", () => {
         "ET qu'on insère au moins le prix d'un café " +
         "ALORS un café est servi " +
         "Et une dose d'eau est ajouté " +
-        "ET l'argent est rendu ", () => {
+        "ET l'argent est encaissé ", () => {
 
             // Arrange
             const machineACafe = new MachineACafe(prixCafe);
