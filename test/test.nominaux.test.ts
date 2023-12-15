@@ -113,4 +113,100 @@ describe("test works", () => {
             expect(resultat).toBe(true);
             expect(machineACafe.getArgentEncaisse()).toBe(piece);
         });
+
+        test("ETANT DONNE une machine a café " +
+        "ET que le bouton 'sucre' a été appuyé un nombre impair de fois " +
+        "QUAND on insère au moins le prix d'un café " + 
+        "ALORS un café sucré coule " +
+        "ET l'argent est encaissé", () => {
+            // Arrange
+            const machineACafe = new MachineACafe(prixCafe);
+            machineACafe.setNombreAppuisSucre(3);
+            const piece = pieceSuperieurOuEgaleAuPrixDuCafe[0];
+
+            // Act
+            machineACafe.insererPiece(piece);
+            const resultat = machineACafe.servirCafe();
+
+            // Assert
+            expect(resultat).toBe(true);
+            expect(machineACafe.getArgentEncaisse()).toBe(piece);
+        });
+
+        test("ETANT DONNE une machine a café " +
+        "ET que le bouton 'sucre' a été appuyé un nombre impair de fois " +
+        "QUAND on insère moins que le prix d'un café " +
+        "ALORS aucun café ne coule " +
+        "ET l'argent est rendu", () => {
+            // Arrange
+            const machineACafe = new MachineACafe(prixCafe);
+            machineACafe.setNombreAppuisSucre(3);
+            const piece = pieceInférieurAuPrixDuCafe[0];
+
+            // Act
+            machineACafe.insererPiece(piece);
+            const resultat = machineACafe.servirCafe();
+
+            // Assert
+            expect(resultat).toBe(false);
+            expect(machineACafe.getArgentEncaisse()).toBe(0);
+        });
+
+        test("ETANT DONNE une machine a café " +
+        "ET que le bouton 'sucre' a été appuyé un nombre pair de fois " +
+        "QUAND on insère 50cts ALORS un café non sucré coule " +
+        "ET l'argent est encaissé", () => {
+            // Arrange
+            const machineACafe = new MachineACafe(prixCafe);
+            machineACafe.setNombreAppuisSucre(2);
+            const piece = pieceSuperieurOuEgaleAuPrixDuCafe[0];
+
+            // Act
+            machineACafe.insererPiece(piece);
+            const resultat = machineACafe.servirCafe();
+
+            // Assert
+            expect(resultat).toBe(true);
+            expect(machineACafe.getArgentEncaisse()).toBe(piece);
+        });
+
+        test("ETANT DONNE une machine a café ayant une défaillance lors de l'ajout de sucre " +
+        "ET que le bouton 'sucre' a été appuyé " +
+        "QUAND on insère 50cts " +
+        "ALORS un café non sucré coule " +
+        "ET l'argent est encaissé", () => {
+            // Arrange
+            const machineACafe = new MachineACafe(prixCafe);
+            machineACafe.setDefaillanceAjoutSucre(true);
+            machineACafe.setNombreAppuisSucre(1);
+            const piece = pieceSuperieurOuEgaleAuPrixDuCafe[0];
+
+            // Act
+            machineACafe.insererPiece(piece);
+            const resultat = machineACafe.servirCafe();
+
+            // Assert
+            expect(resultat).toBe(true);
+            expect(machineACafe.getArgentEncaisse()).toBe(piece);
+        });
+
+        test("ETANT DONNE une machine a café ayant une défaillance " +
+        "ET que le bouton 'sucre' a été appuyé " +
+        "QUAND on insère 50cts " +
+        "ALORS aucun café ne coule " +
+        "ET l'argent est rendu", () => {
+            // Arrange
+            const machineACafe = new MachineACafe(prixCafe);
+            machineACafe.setDefaillance(true);
+            machineACafe.setNombreAppuisSucre(1);
+            const piece = pieceSuperieurOuEgaleAuPrixDuCafe[0];
+
+            // Act
+            machineACafe.insererPiece(piece);
+            const resultat = machineACafe.servirCafe();
+
+            // Assert
+            expect(resultat).toBe(false);
+            expect(machineACafe.getArgentEncaisse()).toBe(0);
+        });
 });

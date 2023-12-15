@@ -9,6 +9,9 @@ export class MachineACafe {
     private prixCafe = 0.50;
     private piece = 0;
     private allonge = false;
+    private nombreAppuisSucre = 0;
+    private defaillanceAjoutSucre = false;
+    private defaillance = false;
 
     public setPeutServir(peutServir: boolean) {
         this.peutServir = peutServir;
@@ -28,7 +31,7 @@ export class MachineACafe {
     }
 
     public servirCafe() {
-        if (this.peutServir && this.piece >= this.prixCafe) {
+        if (this.peutServir && this.piece >= this.prixCafe && !this.defaillance) {
             return true;
         }
         else {
@@ -50,5 +53,15 @@ export class MachineACafe {
         }
     }
 
+    public setNombreAppuisSucre(nombreAppuisSucre: number): void {
+        this.nombreAppuisSucre = nombreAppuisSucre;
+    }
 
+    public setDefaillanceAjoutSucre(defaillanceAjoutSucre: boolean): void {
+        this.defaillanceAjoutSucre = defaillanceAjoutSucre;
+    }
+
+    public setDefaillance(defaillance: boolean): void {
+        this.defaillance = defaillance;
+    }
 }
